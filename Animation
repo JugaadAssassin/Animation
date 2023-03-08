@@ -1,0 +1,78 @@
+import simplegui
+import random
+x = -50
+sun = 50
+clouds = 50
+k = 300
+a = 200
+# Create Global Variable
+width = 600
+height = 600
+def draw_handler(canvas):
+    # Draw Here!
+    global x
+    global sun
+    global clouds
+    global k
+    global a
+    if x!= 100:
+        x = x + 5
+    if sun!= 550:
+        sun = sun + 0.2
+    if clouds!= 850:
+        clouds = clouds + 4
+    #Sun
+    canvas.draw_circle((sun, 50), 50, 5, "grey", "grey")
+    #rain
+    for i in range(120):
+        xdot=random.randint(1, 600)
+        ydot=random.randint(1, 445)
+        canvas.draw_line((xdot, ydot), (xdot, ydot+10), 5, "lightblue")
+    #House
+    canvas.draw_polygon([(400, 400), (600, 400), (600, 200), (400, 200)], 5, "saddlebrown", "saddlebrown")
+    canvas.draw_polygon([(400, 200), (600, 200), (500, 120)], 5, "black", "saddlebrown")
+    canvas.draw_polygon([(455, 400), (515, 400), (515, 300), (455, 300)], 5, "black")
+    canvas.draw_circle((505, 350), 1, 8, "black", 'black')
+    #Tires
+    canvas.draw_circle((x, 385), 20, 2, "black", "black")
+    canvas.draw_circle((x + 210, 385), 20, 2, "black", "black")
+    canvas.draw_circle((x + 210, 385), 20, 2, "black", "black")
+    #Road
+    canvas.draw_polygon([(0, 600), (600, 600), (600, 400), (0, 400)], 1, "blue", "green")
+    # Car's body
+    canvas.draw_polygon([(x - 50, 380), (x + 250, 380), (x + 250, 300), (x - 50, 300)], 5, "purple", "purple")
+    canvas.draw_polygon([(x - 50, 380), (x + 250, 380), (x + 250, 300), (x - 50, 300)], 5, "purple", "purple")
+    canvas.draw_polygon([(x - 5, 300), (x + 150, 300), (x + 150, 250), (x - 5, 250)], 2, "purple", "purple")
+    #Clouds
+    canvas.draw_circle((clouds - 460, 100), 30, 1, "grey", "grey")
+    canvas.draw_circle((clouds - 500, 100), 30, 1, "grey", "grey")
+    canvas.draw_circle((clouds - 420, 100), 30, 1, "grey", "grey")
+    canvas.draw_circle((clouds - 460, 70), 30, 1, "grey", "grey")
+    canvas.draw_circle((clouds - 660, 100), 30, 1, "grey", "grey")
+    canvas.draw_circle((clouds - 700, 100), 30, 1, "grey", "grey")
+    canvas.draw_circle((clouds - 620, 100), 30, 1, "grey", "grey")
+    canvas.draw_circle((clouds - 660, 70), 30, 1, "grey", "grey")
+    #person
+    canvas.draw_circle((100, 455), 15, 1, 'burlywood', 'burlywood')
+    #body
+    canvas.draw_line((100, 500), (100, 470), 2.5, 'burlywood')
+    k=k+5
+    if (k>= 160):
+        k=15
+    #right leg (moving)
+    canvas.draw_line((100, 500), (k, 550), 2.5, 'burlywood')
+    #left leg
+    canvas.draw_line((70, 550), (100, 500), 2.5, 'tan')
+    #arms
+    canvas.draw_line((150, 500), (100, 480), 2.5, 'tan')
+    canvas.draw_line((50, 500), (100, 480), 2.5, 'tan')
+    a=a+8
+    if(a>=315):
+        a=15
+    #ball
+    canvas.draw_circle((a, 550), 20, 1, "black", "white")
+    canvas.draw_circle((a, 550), 10, 1, "black", "black")
+frame = simplegui.create_frame('Hard Work is the Key to Success', 600, 600)
+frame.set_canvas_background("Blue")
+frame.set_draw_handler(draw_handler)
+frame.start()
